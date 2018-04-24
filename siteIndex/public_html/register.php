@@ -28,8 +28,8 @@
                 <td id="cellright"> <input required type="password" name="pwd" placeholder="Password"></td>
               </tr>
               <tr>
-                <td id="cellleft">Date of Birth :</td>
-                <td id="cellright"><input required type="date" name="bday"></td>
+                <td id="cellleft">Date of Birth :<br><p class="text-muted"> Under 18 will be required</br>to give parent information<p></td>
+                <td id="cellright"><input required type="date" class="bday" name="bday"></td>
               </tr>
               <tr>
                 <td id="cellleft">Address :</td>
@@ -74,7 +74,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 pinput" id="pinput">
     <div class="panel">
       <div class="panel-heading">
         <h3 class="panel-title">Parent Information</h3>
@@ -84,18 +84,18 @@
             <tbody>
               <tr>
                 <td id="cellleft">First Name :</td>
-                <td id="cellright"><input type="text" placeholder="Given Names" name="pfname"></td>
+                <td id="cellright"><input required type="text" placeholder="Given Names" name="pfname"></td>
               </tr>
               <tr>
                 <td id="cellleft">Last Name :</td>
-                <td id="cellright"><input type="text" placeholder="Family Name" name="plname"></td>
+                <td id="cellright"><input required type="text" placeholder="Family Name" name="plname"></td>
               </tr>
                 <td id="cellleft">Phone Number :</td>
-                <td id="cellright"><input type="tel" name="ptel"></td>
+                <td id="cellright"><input required type="tel" name="ptel"></td>
               </tr>
               <tr>
                 <td id="cellleft">Email :</td>
-                <td id="cellright"><input type="email" name="pusremail"></td>
+                <td id="cellright"><input required type="email" name="pusremail"></td>
               </tr>
             </tbody>
           </table>
