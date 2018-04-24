@@ -1,11 +1,12 @@
 <?php
-    require_once("resources/config.php");
+    $basename = substr(strtolower(basename($_SERVER['PHP_SELF'])),0,strlen(basename($_SERVER['PHP_SELF']))-4);
+    require_once("../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
 ?>
 <div class="container">
 <div class="jumbotron">
-  <div class="container">
-    <h1>Learn to play various instruments</h1>
+  <div class="container" style="color: white">
+    <h1>Learn to play music</h1>
     <p>Come on down to Pineland Music School<br>
       We got all sorts of instruments, all sorts of sizes, and colors, that make all sorts different sounds!</p>
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
@@ -13,7 +14,7 @@
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title">We got the best instruments</h3>
     </div>
@@ -24,7 +25,7 @@
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title">We got the best instruments</h3>
     </div>
@@ -35,7 +36,7 @@
 </div>
 
 <div class="col-md-4">
-  <div class="panel panel-default">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title">We got the best instruments</h3>
     </div>
@@ -46,7 +47,7 @@
 </div>
 
 <div class="col-md-12">
-  <div class="panel panel-default">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title">We got the best instruments</h3>
     </div>
@@ -55,6 +56,7 @@
     </div>
   </div>
 </div>
+
 </div>
 
 <?php
