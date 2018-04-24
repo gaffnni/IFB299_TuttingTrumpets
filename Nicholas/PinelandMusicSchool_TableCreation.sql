@@ -1,14 +1,14 @@
 CREATE TABLE `TeachersAccounts` (
 	`Id` INT NOT NULL AUTO_INCREMENT UNIQUE,
-	`FirstName` varchar NOT NULL,
-	`LastName` varchar NOT NULL,
+	`FirstName` varchar(30) NOT NULL,
+	`LastName` varchar(30) NOT NULL,
 	`DateOfBirth` DATE NOT NULL,
-	`Address` varchar NOT NULL,
-	`Gender` varchar NOT NULL,
+	`Address` varchar(30) NOT NULL,
+	`Gender` varchar(30) NOT NULL,
 	`HomePhone` INT,
 	`MobPhone` INT NOT NULL,
-	`EmailAddress` varchar NOT NULL,
-	`Password` varchar NOT NULL,
+	`EmailAddress` varchar(30) NOT NULL,
+	`Password` varchar(30) NOT NULL,
 	`AdminCreationId` INT,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME,
@@ -17,9 +17,9 @@ CREATE TABLE `TeachersAccounts` (
 
 CREATE TABLE `ParentDetails` (
 	`Id` INT NOT NULL AUTO_INCREMENT,
-	`FirstName` varchar NOT NULL,
-	`LastName` varchar NOT NULL,
-	`PhoneNumber` varchar,
+	`FirstName` varchar(30) NOT NULL,
+	`LastName` varchar(30) NOT NULL,
+	`PhoneNumber` varchar(30),
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME,
 	PRIMARY KEY (`Id`)
@@ -37,7 +37,7 @@ CREATE TABLE `TeachersLanguages` (
 
 CREATE TABLE `Languages` (
 	`Id` INT NOT NULL AUTO_INCREMENT,
-	`Name` varchar NOT NULL,
+	`Name` varchar(30) NOT NULL,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME,
 	PRIMARY KEY (`Id`)
@@ -55,7 +55,7 @@ CREATE TABLE `TeachersIntruments` (
 
 CREATE TABLE `Proficiency` (
 	`Id` INT NOT NULL AUTO_INCREMENT,
-	`Value` varchar NOT NULL,
+	`Value` varchar(30) NOT NULL,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME,
 	PRIMARY KEY (`Id`)
@@ -63,8 +63,8 @@ CREATE TABLE `Proficiency` (
 
 CREATE TABLE `Instruments` (
 	`Id` INT NOT NULL AUTO_INCREMENT,
-	`Name` varchar NOT NULL,
-	`Type` varchar NOT NULL,
+	`Name` varchar(30) NOT NULL,
+	`Type` varchar(30) NOT NULL,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME NOT NULL,
 	PRIMARY KEY (`Id`)
@@ -72,15 +72,15 @@ CREATE TABLE `Instruments` (
 
 CREATE TABLE `StudentsAccounts` (
 	`Id` INT NOT NULL AUTO_INCREMENT UNIQUE,
-	`FirstName` varchar NOT NULL,
-	`LastName` varchar NOT NULL,
+	`FirstName` varchar(30) NOT NULL,
+	`LastName` varchar(30) NOT NULL,
 	`DateOfBirth` DATE NOT NULL,
-	`Address` varchar NOT NULL,
-	`Gender` varchar NOT NULL,
+	`Address` varchar(250) NOT NULL,
+	`Gender` varchar(10) NOT NULL,
 	`HomePhone` INT,
 	`MobPhone` INT NOT NULL,
-	`EmailAddress` varchar NOT NULL,
-	`Password` varchar NOT NULL,
+	`EmailAddress` varchar(60) NOT NULL,
+	`Password` varchar(30) NOT NULL,
 	`ParentsId` INT,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME,
@@ -98,8 +98,8 @@ CREATE TABLE `TeachersFeedback` (
 
 CREATE TABLE `Feedback` (
 	`Id` INT NOT NULL AUTO_INCREMENT,
-	`Feedback` varchar NOT NULL,
-	`Rating` varchar NOT NULL,
+	`Feedback` varchar(30)  NOT NULL,
+	`Rating` varchar(30)  NOT NULL,
 	`StudentId` INT NOT NULL,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME NOT NULL,
@@ -108,10 +108,10 @@ CREATE TABLE `Feedback` (
 
 CREATE TABLE `AdminAccounts` (
 	`Id` INT NOT NULL AUTO_INCREMENT UNIQUE,
-	`FirstName` varchar NOT NULL,
-	`LastName` varchar NOT NULL,
-	`EmailAddress` varchar NOT NULL,
-	`Password` varchar NOT NULL,
+	`FirstName` varchar(30) NOT NULL,
+	`LastName` varchar(30)  NOT NULL,
+	`EmailAddress` varchar(30)  NOT NULL,
+	`Password` varchar(30)  NOT NULL,
 	`CreateDate` DATETIME NOT NULL,
 	`UpdateDate` DATETIME,
 	PRIMARY KEY (`Id`)
@@ -136,7 +136,7 @@ CREATE TABLE `ClassRegistration` (
 
 CREATE TABLE `Accounts` (
 	`Id` INT NOT NULL AUTO_INCREMENT,
-	`Username` varchar NOT NULL,
+	`Username` varchar(30) NOT NULL,
 	`StudentId` INT,
 	`TeacherId` INT,
 	`AdminId` INT,
