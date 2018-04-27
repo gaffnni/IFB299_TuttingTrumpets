@@ -64,8 +64,7 @@ body {
 			
 	</div>
 </div>
-</body>
-</html>
+
 =======
 <div class="container">
 <form action="/action_page.php" method="get">
@@ -174,6 +173,7 @@ body {
 
 </form>
 </div>
+
 >>>>>>> da899f3faba1c08751ca4b812739db79f57e0a70
 
 <?php
