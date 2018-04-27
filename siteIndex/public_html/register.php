@@ -1,12 +1,14 @@
 <?php
+    $form = 'regform';
     $basename = substr(strtolower(basename($_SERVER['PHP_SELF'])),0,strlen(basename($_SERVER['PHP_SELF']))-4);
     require_once("../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
     require_once(TEMPLATES_PATH . "/banner.php");
+    require_once(LIBRARIES_PATH . "/registerfunc.php");
 ?>
 
 <div class="container">
-<form action="/action_page.php" method="get">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="regform" method="POST" id="regform">
   <div class="col-md-6">
     <div class="panel">
       <div class="panel-heading">
@@ -17,23 +19,27 @@
             <tbody>
               <tr>
                 <td id="cellleft">First Name :</td>
-                <td id="cellright"><input required  type="text" name="fname" placeholder="Given Names"></td>
+                <td id="cellright"><input required  type="text" name="firstname" placeholder="Given Names"></td>
               </tr>
               <tr>
                 <td id="cellleft">Last Name :</td>
-                <td id="cellright"><input required  type="text" placeholder="Family Name" name="lname"></td>
+                <td id="cellright"><input required  type="text" placeholder="Family Name" name="lastname"></td>
+              </tr>
+              <tr>
+                <td id="cellleft">Username :</td>
+                <td id="cellright"> <input required type="username" name="usrname" placeholder="Username"></td>
               </tr>
               <tr>
                 <td id="cellleft">Password :</td>
-                <td id="cellright"> <input required type="password" name="pwd" placeholder="Password"></td>
+                <td id="cellright"> <input required type="password" name="password" placeholder="Password"></td>
               </tr>
               <tr>
                 <td id="cellleft">Date of Birth :<br><p class="text-muted"> Under 18 will be required</br>to give parent information<p></td>
-                <td id="cellright"><input required type="date" class="bday" name="bday"></td>
+                <td id="cellright"><input required type="date" class="bday" name="dob"></td>
               </tr>
               <tr>
                 <td id="cellleft">Address :</td>
-                <td id="cellright"><textarea required rows="4" cols="30" placeholder=""></textarea></td>
+                <td id="cellright"><textarea required rows="4" cols="30" placeholder="" name="address"></textarea></td>
               </tr>
               <tr>
                 <td id="cellleft">Gender :</td>
@@ -43,11 +49,11 @@
               </tr>
               <tr>
                 <td id="cellleft">Phone Number :</td>
-                <td id="cellright"><input required type="tel" name="tel" placeholder="Phone Number"></td>
+                <td id="cellright"><input required type="tel" name="mobphone" placeholder="Phone Number"></td>
               </tr>
               <tr>
                 <td id="cellleft">Email :</td>
-                <td id="cellright"><input required type="email" name="usremail" placeholder="Email"></td>
+                <td id="cellright"><input required type="email" name="email" placeholder="Email"></td>
               </tr>
               <tr>
                 <td id="cellleft">Facebook :</td>
@@ -70,7 +76,7 @@
               </tr>
             </tbody>
           </table>
-          <input type="submit" class="btn btn-primary" value="Submit">
+          <input type="submit" class="btn btn-primary" value="submit" form="regform">
       </div>
     </div>
   </div>
