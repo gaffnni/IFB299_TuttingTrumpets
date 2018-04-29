@@ -1,0 +1,7 @@
+Student accounts add:
+	Salt int(11)
+	Pass Length to 256
+ParentDetails:
+	StudentId FK
+	Email varchar(60)
+	
