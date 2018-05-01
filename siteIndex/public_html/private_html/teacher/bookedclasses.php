@@ -3,6 +3,7 @@
     require_once("../../../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
     require_once(TEMPLATES_PATH . "/banner.php");
+    require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
 ?>
 
 <div class="container">

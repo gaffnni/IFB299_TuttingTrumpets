@@ -1,5 +1,5 @@
 <?php
-    $form = 'regform';
+    $form = 'sturegform';
     $basename = substr(strtolower(basename($_SERVER['PHP_SELF'])),0,strlen(basename($_SERVER['PHP_SELF']))-4);
     require_once("../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");

@@ -1,4 +1,6 @@
 <?php
+    // When user loads the log in page delete current session Vars
+    session_unset();
     $form = 'loginform';
     $basename = substr(strtolower(basename($_SERVER['PHP_SELF'])),0,strlen(basename($_SERVER['PHP_SELF']))-4);
     require_once("../resources/config.php");
@@ -19,7 +21,7 @@
          <li class="list-group-item"><input type="submit" value="submit" form="loginform"></li>
          <li class="list-group-item" style="height: 45px"><hr style="border-top: dotted 1px;" /></li>
          <li class="list-group-item" style="text-align: left; border: 0px"><a href=#>Forgot Password</a></li>
-         <li class="list-group-item" style="text-align: left; border: 0px"><a href=#>Register Here</a></li>
+         <li class="list-group-item" style="text-align: left; border: 0px"><a href="register.php">Register Here</a></li>
         </ul>
       </div>
     </div>

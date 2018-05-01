@@ -15,4 +15,4 @@
 </footer>
 </body>
 </html>
-<script src="js/js.js"></script>
+<script src="<?php echo JS_PATH . '/js.js'?>"></script>

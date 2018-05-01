@@ -13,6 +13,9 @@ or define("IMAGES_PATH", '/img');
 defined("INDEX_PATH")
 or define("INDEX_PATH", '/');
 
+defined("PROFILE_PATH")
+or define("PROFILE_PATH", '/private_html');
+
 defined("STUDENT_PATH")
 or define("STUDENT_PATH", '/private_html/student');
 
@@ -24,6 +27,9 @@ or define("ADMIN_PATH", '/private_html/admin');
 
 defined("STYLES_PATH")
 or define("STYLES_PATH", '/css');
+
+defined("JS_PATH")
+or define("JS_PATH", '/js');
 
 /*
     Error reporting.

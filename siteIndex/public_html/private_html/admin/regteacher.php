@@ -1,8 +1,11 @@
 <?php
     $basename = 'Teacher Registration';
+    $form = 'teacherregform';
     require_once("../../../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
     require_once(TEMPLATES_PATH . "/banner.php");
+    require_once(LIBRARIES_PATH . "/registerfunc.php");
+    require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
 ?>
 
 <div class="container">
@@ -25,7 +28,7 @@
               </tr>
               <tr>
                 <td id="cellleft">Username :</td>
-                <td id="cellright"> <input required type="username" name="usrname" placeholder="Username"></td>
+                <td id="cellright"> <input required type="username" name="username" placeholder="Username"></td>
               </tr>
               <tr>
                 <td id="cellleft">Password :</td>
@@ -54,10 +57,6 @@
                 <td id="cellright"><input required type="email" name="email" placeholder="Email"></td>
               </tr>
               <tr>
-                <td id="cellleft">Facebook :</td>
-                <td id="cellright"><input type="url" name="fburl" placeholder="Facebook URL"></td>
-              </tr>
-              <tr>
                 <td id="cellleft">Language :</td>
                 <td id="cellright"> <select>
                   <!-- Will change to list all available in DB !-->
@@ -66,7 +65,7 @@
                   <option value="Spanish">Spanish</option>
                   <option value="french">French</option>
                   <option value="mandarin">Mandarin</option>
-				  <option value="arabic">Arabic</option>
+				          <option value="arabic">Arabic</option>
                 </select> </td>
               </tr>
               <tr>
