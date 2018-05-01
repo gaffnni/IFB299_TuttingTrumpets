@@ -11,7 +11,7 @@ SET @Username = 'Leroy',
 @Salt = 1,
 @Password = 'Password2';
 
-INSERT INTO studentsaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, FacebookURL, RequireInstrument, Password)
-VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @FacebookURL, @RequireInstrument, @Password);
+INSERT INTO studentsaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, FacebookURL, RequireInstrument, Salt, Password)
+VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @FacebookURL, @RequireInstrument, @Salt, @Password);
 INSERT INTO accounts(Username, StudentId)
 SELECT @Username, LAST_INSERT_ID();

@@ -10,7 +10,7 @@ SET @Username = 'Senator',
 @Password = 'Password', 
 @AdminCreationId = 1;
 
-INSERT INTO teachersaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress,Password,AdminCreationId)
-VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @Password, @AdminCreationId);
+INSERT INTO teachersaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, Salt, Password,AdminCreationId)
+VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @Salt, @Password, @AdminCreationId);
 INSERT INTO accounts(Username, TeacherId)
 SELECT @Username, LAST_INSERT_ID();

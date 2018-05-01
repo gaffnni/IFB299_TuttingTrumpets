@@ -1,8 +1,8 @@
 #Admin Account
 SET @Username = 'JD', @FirstName = 'John', @LastName = 'Doe', @Email = 'John.Doe@gmail.com', @Salt = 1, @Password = 'Password';
 
-INSERT INTO adminaccounts(FirstName,LastName,EmailAddress,Password)
-VALUES(@FirstName, @LastName, @Email, @Password);
+INSERT INTO adminaccounts(FirstName,LastName,EmailAddress, Salt, Password)
+VALUES(@FirstName, @LastName, @Email, @Salt, @Password);
 INSERT INTO accounts(Username, AdminId)
 SELECT @Username, LAST_INSERT_ID();
 
@@ -19,8 +19,8 @@ SET @Username = 'Senator',
 @Password = 'Password', 
 @AdminCreationId = 1;
 
-INSERT INTO teachersaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress,Password,AdminCreationId)
-VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @Password, @AdminCreationId);
+INSERT INTO teachersaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, Salt, Password,AdminCreationId)
+VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @Salt, @Password, @AdminCreationId);
 INSERT INTO accounts(Username, TeacherId)
 SELECT @Username, LAST_INSERT_ID();
 
@@ -38,8 +38,8 @@ SET @Username = 'Leroy',
 @Salt = 1,
 @Password = 'Password2';
 
-INSERT INTO studentsaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, FacebookURL, RequireInstrument, Password)
-VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @FacebookURL, @RequireInstrument, @Password);
+INSERT INTO studentsaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, FacebookURL, RequireInstrument, Salt, Password)
+VALUES(@FirstName, @LastName, @DateOfBirth, @Address, @Gender, @PhoneNumber, @Email, @FacebookURL, @RequireInstrument, @Salt, @Password);
 INSERT INTO accounts(Username, StudentId)
 SELECT @Username, LAST_INSERT_ID();
 
