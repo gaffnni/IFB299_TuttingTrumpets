@@ -8,6 +8,7 @@ SET @Username = 'Leroy',
 @Email = 'LarryLarry@gmail.com',
 @FacebookURL = 'https://www.facebook.com/LarryLarrison94',
 @RequireInstrument = 1,
+@Salt = 1,
 @Password = 'Password2';
 
 INSERT INTO studentsaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, FacebookURL, RequireInstrument, Password)

@@ -6,6 +6,7 @@ SET @Username = 'Senator',
 @Gender = 'Male', 
 @PhoneNumber = 0412456789, 
 @Email = 'John.Doe@gmail.com', 
+@Salt = 1,
 @Password = 'Password', 
 @AdminCreationId = 1;
 

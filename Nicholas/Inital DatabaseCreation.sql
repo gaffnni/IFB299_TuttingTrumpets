@@ -1,5 +1,5 @@
 #Admin Account
-SET @Username = 'JD', @FirstName = 'John', @LastName = 'Doe', @Email = 'John.Doe@gmail.com', @Password = 'Password';
+SET @Username = 'JD', @FirstName = 'John', @LastName = 'Doe', @Email = 'John.Doe@gmail.com', @Salt = 1, @Password = 'Password';
 
 INSERT INTO adminaccounts(FirstName,LastName,EmailAddress,Password)
 VALUES(@FirstName, @LastName, @Email, @Password);
@@ -15,6 +15,7 @@ SET @Username = 'Senator',
 @Gender = 'Male', 
 @PhoneNumber = 0754121294,
 @Email = 'John.Doe@gmail.com', 
+@Salt = 1,
 @Password = 'Password', 
 @AdminCreationId = 1;
 
@@ -34,6 +35,7 @@ SET @Username = 'Leroy',
 @Email = 'LarryLarry@gmail.com',
 @FacebookURL = 'https://www.facebook.com/LarryLarrison94',
 @RequireInstrument = 1,
+@Salt = 1,
 @Password = 'Password2';
 
 INSERT INTO studentsaccounts(FirstName,LastName,DateOfBirth,Address,Gender,PhoneNumber,EmailAddress, FacebookURL, RequireInstrument, Password)
