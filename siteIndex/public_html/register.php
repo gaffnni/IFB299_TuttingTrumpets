@@ -6,7 +6,6 @@
     require_once(TEMPLATES_PATH . "/banner.php");
     require_once(LIBRARIES_PATH . "/registerfunc.php");
 ?>
-
 <div class="container">
 <form action="" name="regform" method="POST" id="regform">
   <div class="col-md-6">
@@ -19,50 +18,69 @@
             <tbody>
               <tr>
                 <td id="cellleft">First Name :</td>
-                <td id="cellright"><input required  type="text" name="firstname" placeholder="Given Names"></td>
+                <td id="cellright">
+                  <input required  type="text" name="firstname" placeholder="Given Names">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Last Name :</td>
-                <td id="cellright"><input required  type="text" placeholder="Family Name" name="lastname"></td>
+                <td id="cellright">
+                  <input required  type="text" placeholder="Family Name" name="lastname">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Username :</td>
-                <td id="cellright"> <input required type="username" name="username" placeholder="Username"></td>
+                <td id="cellright">
+                  <input required type="username" name="username" placeholder="Username">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Password :</td>
-                <td id="cellright"> <input required type="password" name="password" placeholder="Password"></td>
+                <td id="cellright">
+                  <input required type="password" name="password" placeholder="Password">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Date of Birth :<br><p class="text-muted"> Under 18 will be required</br>to give parent information<p></td>
-                <td id="cellright"><input required type="date" class="bday" name="dob"></td>
+                <td id="cellright">
+                  <input required type="date" class="bday" name="dob">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Address :</td>
-                <td id="cellright"><textarea required rows="4" cols="30" placeholder="" name="address"></textarea></td>
+                <td id="cellright">
+                  <textarea required rows="4" cols="30" placeholder="" name="address">
+                  </textarea></td>
               </tr>
               <tr>
                 <td id="cellleft">Gender :</td>
                 <td id="cellright"><input type="radio" name="gender" value="male"> Male<br>
                   <input type="radio" name="gender" value="female"> Female<br>
-                  <input type="radio" name="gender" value="other"> Other </td>
+                  <input type="radio" name="gender" value="other"> Other
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Phone Number :</td>
-                <td id="cellright"><input required type="tel" name="mobphone" placeholder="Phone Number"></td>
+                <td id="cellright">
+                  <input required type="tel" name="mobphone" placeholder="Phone Number">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Email :</td>
-                <td id="cellright"><input required type="email" name="email" placeholder="Email"></td>
+                <td id="cellright">
+                  <input required type="email" name="email" placeholder="Email">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Facebook :</td>
-                <td id="cellright"><input type="url" name="fburl" placeholder="Facebook URL"></td>
+                <td id="cellright">
+                  <input type="url" name="fburl" placeholder="Facebook URL">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Instrument Hire :</td>
                 <td id="cellright"> <select>
-                  <!-- Will change to list all available in DB !-->
+                  <!-- Change to list all available in DB !-->
                   <option value="" disabled selected>Select</option>
                   <option value="saxophone">saxophone</option>
                   <option value="trumpet">trumpet</option>
@@ -72,7 +90,9 @@
               </tr>
               <tr>
                 <td id="cellleft">Has Own Instrument :</td>
-                <td id="cellright"><input type="checkbox" name="hasinst" value="true"></td>
+                <td id="cellright">
+                  <input type="checkbox" name="hasinst" value="true">
+                </td>
               </tr>
             </tbody>
           </table>
@@ -89,19 +109,30 @@
         <table class="table">
             <tbody>
               <tr>
-                <td id="cellleft">First Name :</td>
-                <td id="cellright"><input type="text" placeholder="Given Names" name="pfname"></td>
+                <td id="cellleft">First Name :
+                </td>
+                <td id="cellright">
+                  <input type="text" placeholder="Given Names" name="pfname">
+                </td>
               </tr>
               <tr>
-                <td id="cellleft">Last Name :</td>
-                <td id="cellright"><input type="text" placeholder="Family Name" name="plname"></td>
+                <td id="cellleft">Last Name :
+                </td>
+                <td id="cellright">
+                  <input type="text" placeholder="Family Name" name="plname">
+                </td>
               </tr>
-                <td id="cellleft">Phone Number :</td>
-                <td id="cellright"><input type="tel" name="ptel"></td>
+                <td id="cellleft">Phone Number :
+                </td>
+                <td id="cellright">
+                  <input type="tel" name="ptel">
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Email :</td>
-                <td id="cellright"><input type="email" name="pemail"></td>
+                <td id="cellright">
+                  <input type="email" name="pemail">
+                </td>
               </tr>
             </tbody>
           </table>
@@ -118,7 +149,6 @@
 <input type="submit" class="btn btn-primary" value="submit" form="regform">
 </form>
 </div>
-
 <?php
     require_once(TEMPLATES_PATH . "/footer.php");
 ?>

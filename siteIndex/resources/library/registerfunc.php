@@ -14,11 +14,11 @@ function console_log( $data ){
 }
 
 //sql statementa
-$sturegsql = "INSERT INTO `studentsaccounts`(`Id`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `HomePhone`, `MobPhone`, `EmailAddress`, `Password`, `Salt`, `ParentsId`, `CreateDate`, `UpdateDate`)
-VALUES (NULL, :firstname, :lastname, :DOB, :address, :gender, NULL, :mobphone, :email, SHA2(CONCAT(:password, :salt), 0), :salt, NULL, :createdate, NULL);";
+$sturegsql = "INSERT INTO `studentsaccounts`(`Id`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `Password`, `Salt`, `ParentsId`, `CreateDate`, `UpdateDate`)
+VALUES (NULL, :firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, SHA2(CONCAT(:password, :salt), 0), :salt, NULL, :createdate, NULL);";
 
-$teacherregsql = "INSERT INTO `teachersaccounts`(`Id`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `HomePhone`, `MobPhone`, `EmailAddress`, `Password`, `Salt`, `AdminCreationId`, `CreateDate`, `UpdateDate`)
-VALUES (NULL, :firstname, :lastname, :DOB, :address, :gender, NULL, :mobphone, :email, SHA2(CONCAT(:password, :salt), 0), :salt, :adminid, :createdate, NULL);";
+$teacherregsql = "INSERT INTO `teachersaccounts`(`Id`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `Password`, `Salt`, `AdminCreationId`, `CreateDate`, `UpdateDate`)
+VALUES (NULL, :firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, SHA2(CONCAT(:password, :salt), 0), :salt, :adminid, :createdate, NULL);";
 
 $acctregsql = "INSERT INTO `accounts`(`Id`, `Username`, `StudentId`, `TeacherId`, `AdminId`) VALUES (NULL, :username, :studentid, NULL, NULL);";
 $teacheracctregsql = "INSERT INTO `accounts`(`Id`, `Username`, `StudentId`, `TeacherId`, `AdminId`) VALUES (NULL, :username, NULL, :teacherid, NULL);";
@@ -136,11 +136,11 @@ try {
     $submittedresult = $stmt->rowCount();
     if ($submittedresult == 1) {
       $regsuccess = true;
-      header('Location: profile.php');
+      header('Location: ../profile.php');
       echo $regsuccess;
     } else {
       $regsuccess = false;
-      header('Location: profile.php');
+      header('Location: ../profile.php');
       echo $regsuccess;
     }
 

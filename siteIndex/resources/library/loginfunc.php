@@ -1,5 +1,6 @@
 <?php
 require_once("connectdb.php");
+session_start();
 
 //DEBUGGING - REMOVE WHEN COMPLETE --------------
 function debug_to_console( $data ) {
@@ -14,7 +15,7 @@ function debug_to_console( $data ) {
 //        value[1] = accountId
 //        value[2] = userId
 //        value[3] = navRef
-$_SESSION["user"] = array();
+
 
 //sql username stmt
 $loginusrsql = "SELECT * FROM accounts WHERE Username= :username";
@@ -22,7 +23,7 @@ $loginusrsql = "SELECT * FROM accounts WHERE Username= :username";
 //sql password stmt
 $stdntloginpasssql = "SELECT Id, Salt, Password FROM studentsaccounts WHERE Id= :studentid";
 $tchrloginpasssql = "SELECT Id, Salt, Password FROM teachersaccounts WHERE Id= :teacherid";
-$adminloginpasssql = "SELECT Id, Password FROM adminaccounts WHERE Id= :adminid";
+$adminloginpasssql = "SELECT Id, Salt, Password FROM adminaccounts WHERE Id= :adminid";
 
 //check both fields are filled
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_POST['username']) && !empty($_POST['password'])) {
@@ -79,9 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_PO
     $rows = $stmt->fetch(PDO::FETCH_NUM);
     $password = $pass . $rows[1];
     echo $pass;
-    echo $rows[1];
+    echo $rows[2];
     // Check Password
-    if (/*hash('sha256', $password)*/$pass == $rows[1]) {
+    // Admin passwords have not been hashed, will be implemented at a later date
+    if (/*hash('sha256', $password)*/$pass == $rows[2]) {
       // Go to account page
       $_SESSION["user"] = array("admin", $acctid, $rows[0]);
       header('Location: private_html/profile.php');
@@ -91,36 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_PO
   } else {
     echo "Incorect Username";
     $loginresult = false;
-    // Failed login popup --------------
+    // TO DO -Failed login popup --------------
   }
-  // if($rows > 0) {
-  //   $logintried = true;
-  //   $acctid =
-  //   $loginsuc = true;
-  //   $salt = $rows[2];
-  //   $firstname = $rows[5];
-  //   //check password
-  //   $password = $_POST['password'] . $salt;
-  //   $password = hash('sha256', $password);
-  //   $stmt2 = $pdo->prepare($loginpasssql);
-  //   $stmt2->bindValue(':password', $password);
-  //   $stmt2->execute();
-  //   $passrows = $stmt2->fetch(PDO::FETCH_NUM);
-  //   //check if eturns any rows if true then password is correct
-  //   if($passrows > 0) {
-  //     //create cookie for logged in user - time for 1 day
-  //     $cookie_value = $username;
-  //     $cookie_name = 'user';
-  //     session_start();
-  //     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
-  //     $_SESSION['loggedin'] = true;
-  //     $_SESSION['firstname'] = $firstname;
-  //     header('location: indexloggedin.php');
-  //   }
-  //
-  // } else {
-  //   $logintried = true;
-  //     $loginsuc = false;
-  //     $outputerror = '<p>Wrong Username and/or Password</p>';
-  //  }
+
 }

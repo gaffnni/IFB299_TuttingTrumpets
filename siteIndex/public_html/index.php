@@ -1,10 +1,9 @@
 <?php
-
     $basename = substr(strtolower(basename($_SERVER['PHP_SELF'])),0,strlen(basename($_SERVER['PHP_SELF']))-4);
     require_once("../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
     session_unset();
-    session_destroy(); 
+    session_destroy();
 ?>
 <div class="container">
 <div class="jumbotron">
@@ -15,7 +14,6 @@
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
   </div>
 </div>
-
 <div class="col-md-4">
   <div class="panel panel-success">
     <div class="panel-heading">
@@ -26,7 +24,6 @@
     </div>
   </div>
 </div>
-
 <div class="col-md-4">
   <div class="panel panel-success">
     <div class="panel-heading">
@@ -37,7 +34,6 @@
     </div>
   </div>
 </div>
-
 <div class="col-md-4">
   <div class="panel panel-success">
     <div class="panel-heading">
@@ -48,7 +44,6 @@
     </div>
   </div>
 </div>
-
 <div class="col-md-12">
   <div class="panel panel-success">
     <div class="panel-heading">
@@ -59,9 +54,7 @@
     </div>
   </div>
 </div>
-
 </div>
-
 <?php
     require_once(TEMPLATES_PATH . "/footer.php");
 ?>

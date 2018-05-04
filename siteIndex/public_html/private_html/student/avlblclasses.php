@@ -2,8 +2,11 @@
 $basename = 'Available Courses';
 require_once("../../../resources/config.php");
 require_once(TEMPLATES_PATH . "/header.php");
+require_once(LIBRARIES_PATH . "/isloggedin.php");
 require_once(TEMPLATES_PATH . "/banner.php");
-require_once(TEMPLATES_PATH . "/studentnav.php");
+if (!isset($_SESSION["user"])) {
+  header('Location: ../login.php');
+}
 require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
 
 ?>
@@ -36,7 +39,7 @@ require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
     <div class="col-md-6">
       <div class="panel">
         <div class="panel-body" style="padding-top: 75px">
-          <img src="../../img/logo.jpg" height=100% width=100% style="border: 2px solid black">
+          <img src="<?php echo IMAGES_PATH . '/logo.jpg'?>" height=100% width=100% style="border: 2px solid black">
         </div>
       </div>
     </div>
