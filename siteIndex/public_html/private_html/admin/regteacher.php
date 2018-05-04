@@ -1,18 +1,19 @@
 <?php
-    $form = 'sturegform';
-    $basename = substr(strtolower(basename($_SERVER['PHP_SELF'])),0,strlen(basename($_SERVER['PHP_SELF']))-4);
-    require_once("../resources/config.php");
+    $basename = 'Teacher Registration';
+    $form = 'teacherregform';
+    require_once("../../../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
     require_once(TEMPLATES_PATH . "/banner.php");
     require_once(LIBRARIES_PATH . "/registerfunc.php");
+    require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
 ?>
 
 <div class="container">
-<form action="" name="regform" method="POST" id="regform">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="regform" method="POST" id="regform">
   <div class="col-md-6">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">Student Information</h3>
+        <h3 class="panel-title">Teachers Information</h3>
       </div>
       <div class="panel-body" >
         <table class="table">
@@ -56,55 +57,31 @@
                 <td id="cellright"><input required type="email" name="email" placeholder="Email"></td>
               </tr>
               <tr>
-                <td id="cellleft">Facebook :</td>
-                <td id="cellright"><input type="url" name="fburl" placeholder="Facebook URL"></td>
-              </tr>
-              <tr>
-                <td id="cellleft">Instrument Hire :</td>
+                <td id="cellleft">Language :</td>
                 <td id="cellright"> <select>
                   <!-- Will change to list all available in DB !-->
                   <option value="" disabled selected>Select</option>
-                  <option value="saxophone">saxophone</option>
-                  <option value="trumpet">trumpet</option>
-                  <option value="marraccas">marraccas</option>
-                  <option value="triangle">triangle</option>
+                  <option value="english">English</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="french">French</option>
+                  <option value="mandarin">Mandarin</option>
+				          <option value="arabic">Arabic</option>
                 </select> </td>
               </tr>
               <tr>
-                <td id="cellleft">Has Own Instrument :</td>
-                <td id="cellright"><input type="checkbox" name="hasinst" value="true"></td>
+                <td id="cellleft">Instruments :</td>
+                <td id="cellright"> <select>
+                  <!-- Will change to list all available in DB !-->
+                  <option value="" disabled selected>Select</option>
+                  <option value="saxophone">Saxophone</option>
+                  <option value="trumpet">Trumpet</option>
+                  <option value="marrccas">Marrccas</option>
+                  <option value="triangle">Triangle</option>
+                </select> </td>
               </tr>
             </tbody>
           </table>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 pinput" id="pinput">
-    <div class="panel">
-      <div class="panel-heading">
-        <h3 class="panel-title">Parent Information</h3>
-      </div>
-      <div class="panel-body" >
-        <table class="table">
-            <tbody>
-              <tr>
-                <td id="cellleft">First Name :</td>
-                <td id="cellright"><input type="text" placeholder="Given Names" name="pfname"></td>
-              </tr>
-              <tr>
-                <td id="cellleft">Last Name :</td>
-                <td id="cellright"><input type="text" placeholder="Family Name" name="plname"></td>
-              </tr>
-                <td id="cellleft">Phone Number :</td>
-                <td id="cellright"><input type="tel" name="ptel"></td>
-              </tr>
-              <tr>
-                <td id="cellleft">Email :</td>
-                <td id="cellright"><input type="email" name="pemail"></td>
-              </tr>
-            </tbody>
-          </table>
+          <input type="submit" class="btn btn-primary" value="submit" form="regform">
       </div>
     </div>
   </div>
@@ -115,7 +92,7 @@
       </div>
     </div>
   </div>
-<input type="submit" class="btn btn-primary" value="submit" form="regform">
+
 </form>
 </div>
 

@@ -1,33 +1,35 @@
 <?php
 
-$config = array(
-  /*
-    "db" => array(
-        "db1" => array(
-            "dbname" => "database1",
-            "username" => "dbUser",
-            "password" => "pa$$",
-            "host" => "localhost"
-        ),
-        "db2" => array(
-            "dbname" => "database2",
-            "username" => "dbUser",
-            "password" => "pa$$",
-            "host" => "localhost"
-        )
-    ),
-    "urls" => array(
-        "baseUrl" => "http://example.com"
-    ),
-    */
-    "paths" => array(
-        "resources" => "siteIndex/resources/",
-    )
-);
 
+defined("LIBRARIES_PATH")
+or define("LIBRARIES_PATH", realpath(dirname(__FILE__) . '/../resources/library'));
 
 defined("TEMPLATES_PATH")
-    or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/../resources/templates'));
+or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/../resources/templates'));
+
+defined("IMAGES_PATH")
+or define("IMAGES_PATH", '/img');
+
+defined("INDEX_PATH")
+or define("INDEX_PATH", '/');
+
+defined("PROFILE_PATH")
+or define("PROFILE_PATH", '/private_html');
+
+defined("STUDENT_PATH")
+or define("STUDENT_PATH", '/private_html/student');
+
+defined("TEACHER_PATH")
+or define("TEACHER_PATH", '/private_html/teacher');
+
+defined("ADMIN_PATH")
+or define("ADMIN_PATH", '/private_html/admin');
+
+defined("STYLES_PATH")
+or define("STYLES_PATH", '/css');
+
+defined("JS_PATH")
+or define("JS_PATH", '/js');
 
 /*
     Error reporting.
