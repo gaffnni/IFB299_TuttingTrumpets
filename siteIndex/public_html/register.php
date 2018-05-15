@@ -78,6 +78,12 @@
                 </td>
               </tr>
               <tr>
+                <td id="cellleft">Require Instrument Hire :</td>
+                <td id="cellright">
+                  <input type="checkbox" name="reqinst" value="1">
+                </td>
+              </tr>
+              <tr>
                 <td id="cellleft">Instrument Hire :</td>
                 <td id="cellright"> <select>
                   <!-- Change to list all available in DB !-->
@@ -87,12 +93,6 @@
                   <option value="marraccas">marraccas</option>
                   <option value="triangle">triangle</option>
                 </select> </td>
-              </tr>
-              <tr>
-                <td id="cellleft">Has Own Instrument :</td>
-                <td id="cellright">
-                  <input type="checkbox" name="hasinst" value="true">
-                </td>
               </tr>
             </tbody>
           </table>

@@ -12,7 +12,7 @@ require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
 ?>
 
 <div class="container">
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="classregform" method="POST" id="classregform">
+  <form action="<?php echo STUDENT_PATH . '/regclass.php';?>" name="classregform" method="POST" id="classregform">
     <div class="col-md-12">
       <div class="panel">
         <div class="panel-heading">
@@ -32,7 +32,7 @@ require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
               <?php require_once(LIBRARIES_PATH . "/getclasses.php"); ?>
             </tbody>
           </table>
-          <input type="submit" class="btn btn-primary" value="submit" form="regform">
+          <input type="submit" class="btn btn-primary" value="submit" form="classregform">
         </div>
       </div>
     </div>
