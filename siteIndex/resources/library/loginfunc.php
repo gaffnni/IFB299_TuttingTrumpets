@@ -1,6 +1,6 @@
 <?php
 require_once("connectdb.php");
-session_start();
+
 
 //DEBUGGING - REMOVE WHEN COMPLETE --------------
 function debug_to_console( $data ) {
@@ -15,7 +15,7 @@ function debug_to_console( $data ) {
 //        value[1] = accountId
 //        value[2] = userId
 //        value[3] = navRef
-
+//        value[4] = classIdSelector
 
 //sql username stmt
 $loginusrsql = "SELECT * FROM accounts WHERE Username= :username";

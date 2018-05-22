@@ -1,26 +1,30 @@
 <?php
+function clean($string) {
+   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
+
 try {
 	//connect to db
 	$pdo = new PDO('mysql:host=localhost;dbname=ifb299', 'tim', 'pass');
 	//enable error
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	} catch (PDOException $e) {
-		echo $e;
-	$errdivs = '<div id="errcont">';
-	$errdive = '</div>';
-	//Check if the error is 1062 meaning duplicate entry into a unique constrained column
-	//two fields have this constraint Email, and Username
-	if (strpos($e, '1062') !==false) { //check for 1062 error by seeing it is contained in the PDOException string
-		$error = true; //set error to true to trigger the error display
-		if (strpos($e, 'email') == true) { // checks if it is an email duplicate first
-			$outputerror = '<p>Duplicate Email</p><p>This email has already been used</p>';
-		} elseif (strpos($e, 'username') == true) { // checks to see if is a username error
-			$outputerror = '<p>Duplicate Username</p><p>This username has already been used, Please change</p>';
-		} else {
-			$outputerror = '<h2>Unknown error occured</h2>';
-		}
+} catch (PDOException $e) {
 
+	//Check if the error is 1045 meaning DB login details incorrect
+	if (strpos($e, '1045') !== false) {
+		// Set DB login for local dev machine
+		try {
+			$pdo = new PDO('mysql:host=localhost;dbname=ifb299', 'root', '');
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch (PDOException $e) {
+			$e = clean($e);
+			$e = "'".'INCORRECT DATABASE USER LOGIN DETAILS --------\r\n \r\n'.$e."'";
+			$erroralert = '<script> alert(' . (string)$e . '); </script>';
+			echo $erroralert;
+		}
 	}
 }
 ?>
