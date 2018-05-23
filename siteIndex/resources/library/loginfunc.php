@@ -19,10 +19,32 @@ function debug_to_console( $data ) {
 
 //sql login stmt
 
-//sql password stmt
-$stdntloginpasssql = "SELECT Id, Salt, Password FROM studentsaccounts WHERE Id= :studentid";
-$tchrloginpasssql = "SELECT Id, Salt, Password FROM teachersaccounts WHERE Id= :teacherid";
-$adminloginpasssql = "SELECT Id, Salt, Password FROM adminaccounts WHERE Id= :adminid";
+$loginSQL = "Select a.Id,
+CASE
+	WHEN sa.Id is not null Then sa.Id
+	WHEN ta.Id is not null Then ta.Id
+	WHEN aa.Id is not null Then aa.Id
+END AS AccountId,
+CASE
+	WHEN sa.Id is not null Then 'Student'
+	WHEN ta.Id is not null Then 'Teacher'
+	WHEN aa.Id is not null Then 'Admin'
+END AS AccountType,
+CASE
+	WHEN sa.Id is not null Then sa.Password
+	WHEN ta.Id is not null Then ta.Password
+	WHEN aa.Id is not null Then aa.Password
+END AS Password,
+CASE
+	WHEN sa.Id is not null Then sa.Salt
+	WHEN ta.Id is not null Then ta.Salt
+	WHEN aa.Id is not null Then aa.Salt
+END AS Salt
+From accounts a
+left join studentsaccounts sa on a.StudentId = sa.Id
+left join adminaccounts aa on a.AdminId = aa.Id
+left join teachersaccounts ta on a.TeacherId = ta.Id
+Where Username = :username;"
 
 //check both fields are filled
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_POST['username']) && !empty($_POST['password'])) {
