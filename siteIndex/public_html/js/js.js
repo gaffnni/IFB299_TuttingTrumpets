@@ -24,8 +24,8 @@ function validateForm() {
     alert("Name must contain characters");
     return false;
   }
-  if (x != "\D") {
-    alert("Must not contain numbers");
+  if (x == "\D") {
+    alert("First name Must not contain numbers");
     return false;
   }
   if (x == "\s") {
@@ -36,34 +36,34 @@ function validateForm() {
   // Last Name
   var x = document.forms["regform"]["lastname"].value;
   if (x == "") {
-    alert("Name must be filled out");
+    alert("Last Name must be filled out");
     return false;
   }
   if (x == "\W") {
-    alert("Name must contain characters");
+    alert("Last Name must contain characters");
     return false;
   }
-  if (x != "\D") {
-    alert("Must not contain numbers");
+  if (x == "\D") {
+    alert("Last Name Must not contain numbers");
     return false;
   }
   if (x == "\s") {
-    alert("Must have no whitespace");
+    alert("Last Name must have no spaces");
     return false;
   }
 
   // Username
   var x = document.forms["regform"]["username"].value;
   if (x == "") {
-    alert("Name must be filled out");
+    alert("Username must be filled out");
     return false;
   }
   if (x == "\W") {
-    alert("Name must contain alphanumeric characters");
+    alert("Username must contain alphanumeric characters");
     return false;
   }
   if (x == "\s") {
-    alert("Must have no whitespace");
+    alert("Username have no whitespace");
     return false;
   }
   if (x == "^.{1,3}$") {
@@ -74,49 +74,37 @@ function validateForm() {
   // Password
   var x = document.forms["regform"]["password"].value;
   if (x == "") {
-    alert("Name must be filled out");
+    alert("Password must be filled out");
     return false;
   }
   if (x == "\s") {
-    alert("Must have no whitespace");
+    alert("Password must have no whitespace");
     return false;
   }
-  if (x != "\d") {
-    alert("Must contain at least 1 digit character");
+  if (x == "\d") {
+    alert("Password must contain at least 1 digit character");
     return false;
   }
-  if (x != "[A-Z]") {
-    alert("Must contain at a capital character");
+  if (x == "[A-Z]") {
+    alert("Password must contain at a capital character");
     return false;
   }
   if (x == "^.{1,6}$") {
-    alert("Must contain at least 6 characters");
+    alert("Password must contain at least 6 characters");
     return false;
   }
 
   // Mobile Phone
   var x = document.forms["regform"]["mobphone"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
-  if (x != "\d") {
-    alert("Must be numbers");
-    return false;
-  }
-  if (x != "^.{8,10}$") {
-    alert("Number is invalid");
+  if (x == "^.{8,10}$") {
+    alert("Mobile Phone number is invalid");
     return false;
   }
 
   // Email
   var x = document.forms["regform"]["email"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
-  if (x != "[@]") {
-    alert("Invalid email");
-    return false;
-  }
+  // if (x != "[@]") {
+  //   alert("Invalid email");
+  //   return false;
+  // }
 }
