@@ -2,7 +2,7 @@
 include ("connectdb.php");
 
 // Set Class Registration to PENDING -----------------------------
-$classregsql = "INSERT INTO `classesstudents`(`Id`, `ClassId`, `StudentId`, `Pending`, `Approved`, `CreateDate`, `UpdateDate`) VALUES (NULL, :classid, :studentid, :pendingtrue, DEFAULT, DEFAULT, NULL)";
+$classregsql = "INSERT INTO `classesstudents`(`ClassId`, `StudentId`) VALUES (:classid, :studentid)";
 $classregresult = '';
 try {
   global $classregresult;
@@ -12,7 +12,6 @@ try {
   $stmt = $pdo->prepare($classregsql);
   $stmt->bindValue(':classid', $classId);
   $stmt->bindValue(':studentid', $studentId);
-  $stmt->bindValue(':pendingtrue', $pendingtrue);
   $stmt->execute();
   $submittedresult = $stmt->rowCount();
   if ($submittedresult == 1) {

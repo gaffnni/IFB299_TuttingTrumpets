@@ -11,89 +11,69 @@ function debug_to_console( $data ) {
 }
 
 // Session variables
-//        value[0] = usertype
-//        value[1] = accountId
-//        value[2] = userId
-//        value[3] = navRef
-//        value[4] = classIdSelector
+//        value[0] = accountId
+//        value[1] = userId
+//        value[2] = accountType
+//        value[3] = password
+//        value[4] = salt
 
-//sql username stmt
-$loginusrsql = "SELECT * FROM accounts WHERE Username= :username";
+//sql login stmt
 
-//sql password stmt
-$stdntloginpasssql = "SELECT Id, Salt, Password FROM studentsaccounts WHERE Id= :studentid";
-$tchrloginpasssql = "SELECT Id, Salt, Password FROM teachersaccounts WHERE Id= :teacherid";
-$adminloginpasssql = "SELECT Id, Salt, Password FROM adminaccounts WHERE Id= :adminid";
+$loginSQL = "Select a.Id,
+CASE
+	WHEN sa.Id is not null Then sa.Id
+	WHEN ta.Id is not null Then ta.Id
+	WHEN aa.Id is not null Then aa.Id
+END AS AccountId,
+CASE
+	WHEN sa.Id is not null Then 'Student'
+	WHEN ta.Id is not null Then 'Teacher'
+	WHEN aa.Id is not null Then 'Admin'
+END AS AccountType,
+CASE
+	WHEN sa.Id is not null Then sa.Password
+	WHEN ta.Id is not null Then ta.Password
+	WHEN aa.Id is not null Then aa.Password
+END AS Password,
+CASE
+	WHEN sa.Id is not null Then sa.Salt
+	WHEN ta.Id is not null Then ta.Salt
+	WHEN aa.Id is not null Then aa.Salt
+END AS Salt
+From accounts a
+left join studentsaccounts sa on a.StudentId = sa.Id
+left join adminaccounts aa on a.AdminId = aa.Id
+left join teachersaccounts ta on a.TeacherId = ta.Id
+Where Username = :username;"
 
 //check both fields are filled
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_POST['username']) && !empty($_POST['password'])) {
   //assign POST data to normal variables
   $username = $_POST['username'];
   $pass = $_POST['password'];
-  $stmt = $pdo->prepare($loginusrsql);
+  $stmt = $pdo->prepare($loginSQL);
   $stmt->bindValue(':username', $username);
   $stmt->execute();
   $rows = $stmt->fetch(PDO::FETCH_NUM);
 
   // Check user type
-  if (!empty($rows[2])) {
+  if (!empty($rows[0])) {
     global $pass;
-    $userid = $rows[2];
+    $userid = $rows[1];
     $acctid = $rows[0];
-    // Get User Pass + info
-    $stmt = $pdo->prepare($stdntloginpasssql);
-    $stmt->bindValue(':studentid', $userid);
-    $stmt->execute();
-    $rows = $stmt->fetch(PDO::FETCH_NUM);
-    $password = $pass . $rows[1];
+    $password = $pass . $rows[4];
     // Check Password
-    if (hash('sha256', $password) == $rows[2]) {
+    if (hash('sha256', $password) == $rows[3]) {
       // Login Successful  -> Go to account page
       // Set Session Data
-      $_SESSION["user"] = array("student", $acctid, $rows[0]);
+      $_SESSION["user"] = array($row[2], $acctid, $rows[0]);
       header('Location: private_html/profile.php');
     } else {
       echo "Incorect Password";
-    }
-  } elseif (!empty($rows[3])) {
-    $acctid = $rows[3];
-    // Get User Pass + info
-    $stmt = $pdo->prepare($tchrloginpasssql);
-    $stmt->bindValue(':teacherid', $acctid);
-    $stmt->execute();
-    $rows = $stmt->fetch(PDO::FETCH_NUM);
-    $password = $pass . $rows[1];
-    // Check Password
-    if (hash('sha256', $password) == $rows[2]) {
-      // Go to account page
-      $_SESSION["user"] = array("teacher", $acctid, $rows[0]);
-      header('Location: private_html/profile.php');
-    } else {
-      echo "Incorect Password";
-    }
-  } elseif (!empty($rows[4])) {
-    $acctid = $rows[4];
-    // Get User Pass + info
-    $stmt = $pdo->prepare($adminloginpasssql);
-    $stmt->bindValue(':adminid', $acctid);
-    $stmt->execute();
-    $rows = $stmt->fetch(PDO::FETCH_NUM);
-    $password = $pass . $rows[1];
-    echo $pass;
-    echo $rows[2];
-    // Check Password
-    // Admin passwords have not been hashed, will be implemented at a later date
-    if (/*hash('sha256', $password)*/$pass == $rows[2]) {
-      // Go to account page
-      $_SESSION["user"] = array("admin", $acctid, $rows[0]);
-      header('Location: private_html/profile.php');
-    } else {
-      echo "Incorect Password";
-    }
+    }  
   } else {
     echo "Incorect Username";
     $loginresult = false;
     // TO DO -Failed login popup --------------
   }
-
 }
