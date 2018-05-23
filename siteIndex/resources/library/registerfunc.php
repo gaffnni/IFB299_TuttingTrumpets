@@ -14,16 +14,21 @@ function console_log( $data ){
 }
 
 //sql statementa
-$sturegsql = "INSERT INTO `studentsaccounts`(`Id`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `Password`, `Salt`, `ParentsId`, `RequireInstrument`, `CreateDate`, `UpdateDate`)
-VALUES (NULL, :firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, SHA2(CONCAT(:password, :salt), 0), :salt, NULL, :reqinst, :createdate, NULL);";
+$sturegsql = "INSERT INTO `studentsaccounts`(`FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `FacebookURL`, `RequireInstrument`, `Salt`, `Password`)
+VALUES (:firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, null, :reqinst, :salt, SHA2(CONCAT(:password, :salt), 0));
+INSERT INTO `accounts`(`Username`, `StudentId`)
+SELECT :username, LAST_INSERT_ID();";
 
-$teacherregsql = "INSERT INTO `teachersaccounts`(`Id`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `Password`, `Salt`, `AdminCreationId`, `CreateDate`, `UpdateDate`)
-VALUES (NULL, :firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, SHA2(CONCAT(:password, :salt), 0), :salt, :adminid, :createdate, NULL);";
+$teacherregsql = "INSERT INTO `teachersaccounts`(`FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `Salt`, `Password`, `AdminCreationId`)
+VALUES (:firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, :salt, SHA2(CONCAT(:password, :salt), 0), :adminid);
+INSERT INTO `accounts`(`Username`, `TeacherId`)
+SELECT :username, LAST_INSERT_ID();";
 
-$acctregsql = "INSERT INTO `accounts`(`Id`, `Username`, `StudentId`, `TeacherId`, `AdminId`) VALUES (NULL, :username, :studentid, NULL, NULL);";
-$teacheracctregsql = "INSERT INTO `accounts`(`Id`, `Username`, `StudentId`, `TeacherId`, `AdminId`) VALUES (NULL, :username, NULL, :teacherid, NULL);";
-
-$parentsql = "INSERT INTO `parentdetails`(`Id`, `StudentId`,`FirstName`, `LastName`, `PhoneNumber`, `Email`, `CreateDate`, `UpdateDate`) VALUES (NULL, :studentid, :pfirstname, :plastname, :pphone, :pemail, :createdate, NULL);";
+$parentsql = "INSERT INTO `parentdetails`(`FirstName`, `LastName`, `PhoneNumber`, `Email`)
+VALUES (:pfirstname, :plastname, :pphone, :pemail);
+UPDATE 'studentsaccounts'
+SET ParentsId = LAST_INSERT_ID(), UpdateDate = CURRENT_TIMESTAMP
+WHERE Id = :studentid;";
 
 //need to do:
 //--validate
@@ -71,14 +76,6 @@ try {
     $stmt->execute();
     $submittedresult = $stmt->rowCount();
     console_log( $submittedresult );
-    // Get Id of last insert
-    $last_id = $pdo->lastInsertId();
-    // Define sql query and  insert row into acct table
-    //    with Id from studentsaccounts
-    $stmt = $pdo->prepare($acctregsql);
-    $stmt->bindValue(':username', $username);
-    $stmt->bindValue(':studentid', $last_id);
-    $stmt->execute();
     // If parent have been included, bind values,
     //   insert into table with student acct ID
     if ($hasparent == true) {
@@ -130,14 +127,6 @@ try {
     $stmt->execute();
     $submittedresult = $stmt->rowCount();
     console_log( $submittedresult );
-    // Get Id of last insert
-    $last_id = $pdo->lastInsertId();
-    // Define sql query and  insert row into acct table
-    //    with Id from studentsaccounts
-    $stmt = $pdo->prepare($teacheracctregsql);
-    $stmt->bindValue(':username', $username);
-    $stmt->bindValue(':teacherid', $last_id);
-    $stmt->execute();
     $submittedresult = $stmt->rowCount();
     if ($submittedresult == 1) {
       $regsuccess = true;
