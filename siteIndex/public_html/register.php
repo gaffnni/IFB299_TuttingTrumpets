@@ -7,7 +7,7 @@
     require_once(LIBRARIES_PATH . "/registerfunc.php");
 ?>
 <div class="container">
-<form action="" name="regform" method="POST" id="regform">
+<form onsubmit="return validateForm()" action="" name="regform" method="POST" id="regform" >
   <div class="col-md-6">
     <div class="panel">
       <div class="panel-heading">
