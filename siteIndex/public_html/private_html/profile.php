@@ -22,8 +22,10 @@
 ?>
 
 <div class="container">
-  <div class="panel">
-    <h1>-Insert Profile-<br></h1><p><?php echo print_r($_SESSION["user"])?></p>
+  <div class="panel" id="tempprorf">
+    <div id="tempprof">
+    </div>
+    <!-- <h1>-Insert Profile-<br></h1><p><?php //echo print_r($_SESSION["user"])?></p> -->
   </div>
 </div>
 
