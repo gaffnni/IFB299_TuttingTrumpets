@@ -34,14 +34,22 @@ if ($_SESSION["user"][0] == 'Student') {
 // Teacher Classes
 
 if ($_SESSION["user"][0] == 'Teacher') {
-  $classessql = "Select i.Name As Instrument, p.Name As Proficiency, c.NumOfStudents, c.Description, c.StartDate, c.Day, c.EndDate, c.Time, c.SessionLength, c.Cost, c.Id
-  From class c
-  Inner Join instruments i on c.InstrumentId = i.Id
-  Inner Join teachersaccounts ta on c.TeacherId = ta.Id
-  Inner Join proficiency p on c.ProficiencyId = p.Id
+  $classessql = "Select Id, Instrument, Proficiency, NumOfStudents, Description, Day, Time, SUM(Pending) AS Pending, SUM(Approved) AS Approved
+From (
+Select c.Id, i.Name As Instrument, p.Name As Proficiency, c.NumOfStudents, c.Description, c.Day, c.Time, (CASE WHEN cs.Approved = 0 THEN 1 ELSE 0 END) AS Pending, (CASE WHEN cs.Approved = 1 THEN 1 ELSE 0 END) Approved
+From class c
+Inner Join instruments i on c.InstrumentId = i.Id
+Inner Join teachersaccounts ta on c.TeacherId = ta.Id
+Inner Join proficiency p on c.ProficiencyId = p.Id
+Inner Join classesstudents cs ON c.Id = cs.ClassId
+WHERE ta.Id = :teacherId)a
+Group By Id, Instrument, Proficiency, NumOfStudents, Description, Day, Time
   ";
 
+  $teacherId = $_SESSION['user'][2];
+  
   $stmt = $pdo->prepare($classessql);
+  $stmt->bindValue(':teacherId', $teacherId);
   $stmt->execute();
   $rows = $stmt->fetchAll();
   foreach ($rows as $row) {
@@ -52,18 +60,18 @@ if ($_SESSION["user"][0] == 'Teacher') {
       echo '<td id="desc">'.$row['Description'].'</td>';
       echo '<td id="proficiency">'.$row['Proficiency'].'</td>';
       echo '<td id="date">'.$row['Day'].'</td>';
-      echo '<td id="numstu">'.$row['NumOfStudents'].'</td>';
-
+      echo '<td id="time">'.$row['Time'].'</td>';
+	  echo '<td id="numstu">'.$row['NumOfStudents'].'</td>';
       // -------------------------------------------------------------
       // This table contains the list of classes a teacher has Created
       // Each row contains details about the class.
       // All is needed to get the Pending and Approved column returned in classesstudents
 
       // The Pending column contains the number of students who have have applied but not yet been approved.
-      // echo '<td id="pending">'.$row['Pending'].'</td>';
+      echo '<td id="pending">'.$row['Pending'].'</td>';
       //
       // Approved Coloumn. Total number of students approved for the class
-      // echo '<td id="approved">'.$row['Approved'].'</td>';
+      echo '<td id="approved">'.$row['Approved'].'</td>';
       // ----------------------------------------------------------------
 
       echo '<td id="managestu"><input type="button" class="btn btn-primary" value="Manage Class"/></td>';
