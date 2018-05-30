@@ -1,0 +1,28 @@
+Student accounts add:
+	Salt int(11) - after password
+	Pass Length to 256
+ParentDetails:
+	StudentId FK
+	Email varchar(60)
+Teachers account:
+	Salt int(11) - after password
+	Pass Length to 256
+Admin account:
+	Salt int(11) - after password
+	Pass Length to 256
+Classes:
+	Id
+	Class name
+	Description
+	Difficulty Level
+	Max Num Students
+	TeacherId
+	Instrument
+	Session Length
+	Start Date
+	End Date
+	
+
+// Insert dummy data when importing schema
+// Classes
+// Admin Account
