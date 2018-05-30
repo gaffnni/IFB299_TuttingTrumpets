@@ -53,9 +53,17 @@ if ($_SESSION["user"][0] == 'Teacher') {
       echo '<td id="proficiency">'.$row['Proficiency'].'</td>';
       echo '<td id="date">'.$row['Day'].'</td>';
       echo '<td id="numstu">'.$row['NumOfStudents'].'</td>';
-      // Insert pending column. Pending column contains number of students have have applied but not yet been approved.
-      //echo '<td id="pending">'.$row['Day'].'</td>';
+
+      // -------------------------------------------------------------
+      // This table contains the list of classes a teacher has Created
+      // Each row contains details about the class.
+      // The Pending column contains the number of students who have have applied but not yet been approved.
+      // echo '<td id="pending">'.$row['Pending'].'</td>';
+      //
       // Approved Coloumn. Total number of students approved for the class
+      // echo '<td id="approved">'.$row['Approved'].'</td>';
+      // ----------------------------------------------------------------
+
       echo '<td id="managestu"><input type="button" class="btn btn-primary" value="Manage Class"/></td>';
       echo '</tr>';
     }
