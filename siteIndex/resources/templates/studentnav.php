@@ -8,10 +8,10 @@
         <a href="<?php echo STUDENT_PATH . '/avlblclasses.php'?>">Available Classes</a>
       </li>
       <li style="width: 25%;">
-        <a href="<?php echo STUDENT_PATH . '/timetable.php'?>">Timetable</a>
+        <a href="<?php //echo STUDENT_PATH . '/timetable.php'?>">Timetable</a>
       </li>
       <li style="width: 25%;">
-        <a href="<?php echo STUDENT_PATH . '/editprofile.php'?>">Edit Profile</a>
+        <a href="<?php //echo STUDENT_PATH . '/editprofile.php'?>">Edit Profile</a>
       </li>
     </ul>
 </nav>

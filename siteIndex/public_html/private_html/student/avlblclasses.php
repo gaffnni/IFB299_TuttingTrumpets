@@ -7,7 +7,7 @@ require_once(TEMPLATES_PATH . "/banner.php");
 if (!isset($_SESSION["user"])) {
   header('Location: ../login.php');
 }
-require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
+require_once(TEMPLATES_PATH . $_SESSION["user"][4]);
 
 ?>
 
@@ -19,14 +19,19 @@ require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
           <h3 class="panel-title">Student Register for classes</h3>
         </div>
         <div class="panel-body" >
-          <table class="table">
+          <table class="a table">
             <tr>
-              <th>#</th>
-              <th>Class Title</th>
-              <th>Description</th>
-              <th>Difficulty</th>
               <th>Teacher</th>
-              <th>Duration</th>
+              <th>Instrument</th>
+              <th>Difficulty</th>
+              <th>Description</th>
+              <th>Start Date</th>
+              <th>Day of the Week</th>
+              <th>End Date</th>
+              <th>Time</th>
+              <th>Length (months)</th>
+              <th>Cost</th>
+              <th>Select to Register</th>
             </tr>
             <tbody>
               <?php require_once(LIBRARIES_PATH . "/getclasses.php"); ?>

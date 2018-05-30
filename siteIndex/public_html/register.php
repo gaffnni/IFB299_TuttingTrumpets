@@ -49,8 +49,8 @@
               <tr>
                 <td id="cellleft">Address :</td>
                 <td id="cellright">
-                  <textarea required rows="4" cols="30" placeholder="" name="address">
-                  </textarea></td>
+                  <textarea required rows="4" cols="30" placeholder="" name="address"></textarea>
+                </td>
               </tr>
               <tr>
                 <td id="cellleft">Gender :</td>
@@ -94,9 +94,10 @@
                   <option value="triangle">triangle</option>
                 </select> </td>
               </tr>
+
             </tbody>
           </table>
-
+          <input type="submit" class="btn btn-primary" value="Register" form="regform" style="width: 100%;">
       </div>
     </div>
   </div>
@@ -146,7 +147,6 @@
       </div>
     </div>
   </div>
-<input type="submit" class="btn btn-primary" value="submit" form="regform">
 </form>
 </div>
 <?php

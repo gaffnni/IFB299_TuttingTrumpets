@@ -15,7 +15,7 @@ function console_log( $data ){
 
 //sql statementa
 $sturegsql = "INSERT INTO `studentsaccounts`(`FirstName`, `LastName`, `DateOfBirth`, `Address`, `Gender`, `PhoneNumber`, `EmailAddress`, `FacebookURL`, `RequireInstrument`, `Salt`, `Password`)
-VALUES (:firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, null, :reqinst, :salt, SHA2(CONCAT(:password, :salt), 0));
+VALUES (:firstname, :lastname, :DOB, :address, :gender, :mobphone, :email, :fburl, :reqinst, :salt, SHA2(CONCAT(:password, :salt), 0));
 INSERT INTO `accounts`(`Username`, `StudentId`)
 SELECT :username, LAST_INSERT_ID();";
 
@@ -47,6 +47,7 @@ try {
     $gender = $_POST['gender'];
     $mobphone = $_POST['mobphone'];
     $email = $_POST['email'];
+    $fburl = $_POST['fburl'];
     if (isset($_POST['reqinst'])) {
       $reqinst = 1;
     } else {
@@ -69,10 +70,12 @@ try {
     $stmt->bindValue(':gender', $gender);
     $stmt->bindValue(':mobphone', $mobphone);
     $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':username', $username);
     $stmt->bindValue(':password', $password);
     $stmt->bindValue(':salt', $salt);
     $stmt->bindValue(':createdate', $currentdate);
     $stmt->bindValue(':reqinst', $reqinst);
+    $stmt->bindValue(':fburl', $fburl);
     $stmt->execute();
     $submittedresult = $stmt->rowCount();
     console_log( $submittedresult );
@@ -108,12 +111,12 @@ try {
     $address = $_POST['address'];
     $gender = $_POST['gender'];
     $mobphone = $_POST['mobphone'];
-    $email = $_POST['email'];
     $adminid = $_SESSION['user'][2];
     // Bind Values
     $stmt = $pdo->prepare($teacherregsql);
     $stmt->bindValue(':firstname', $firstname);
     $stmt->bindValue(':lastname', $lastname);
+    $stmt->bindValue(':username', $username);
     $stmt->bindValue(':DOB', $dob);
     $stmt->bindValue(':address', $address);
     $stmt->bindValue(':gender', $gender);
@@ -122,20 +125,18 @@ try {
     $stmt->bindValue(':password', $password);
     $stmt->bindValue(':salt', $salt);
     $stmt->bindValue(':adminid', $adminid);
-    $stmt->bindValue(':createdate', $currentdate);
-    $stmt->bindValue(':adminid', $adminid);
     $stmt->execute();
     $submittedresult = $stmt->rowCount();
     console_log( $submittedresult );
     $submittedresult = $stmt->rowCount();
     if ($submittedresult == 1) {
       $regsuccess = true;
+      $_SESSION["reg"] = array($regsuccess);
       header('Location: ../profile.php');
-      echo $regsuccess;
     } else {
       $regsuccess = false;
+      $_SESSION["reg"] = array($regsuccess);
       header('Location: ../profile.php');
-      echo $regsuccess;
     }
 
   }

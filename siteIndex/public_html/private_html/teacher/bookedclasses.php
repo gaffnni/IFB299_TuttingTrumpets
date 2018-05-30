@@ -1,10 +1,10 @@
 <?php
-    $basename = 'Available Courses';
+    $basename = 'Your Booked Classes';
     require_once("../../../resources/config.php");
     require_once(TEMPLATES_PATH . "/header.php");
     require_once(LIBRARIES_PATH . "/isloggedin.php");
     require_once(TEMPLATES_PATH . "/banner.php");
-    require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
+    require_once(TEMPLATES_PATH . $_SESSION["user"][4]);
 ?>
 
 <div class="container">
@@ -15,44 +15,23 @@
         <h3 class="panel-title">Teacher view classes</h3>
       </div>
       <div class="panel-body" >
-        <table class="table table-bordered table-striped">
-
+        <table class="a table table-bordered table-striped">
         <tr>
-          <th>#</th>
           <th>Class Title</th>
           <th>Description</th>
+          <th>Proficiency</th>
           <th>Date/Time</th>
+          <th>Number of Students</th>
+          <!-- <th>Students Pending</th> -->
+          <th>Add or Remove Students</th>
         </tr>
 	  	<tbody>
         <tr>
-          <th scope="row">1</th>
-          <td id="title"> </td>
-          <td id="desc"></td>
-          <td id="date"> </td>
+          <?php require_once(LIBRARIES_PATH . "/getclasses.php"); ?>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td id="title"> </td>
-          <td id="desc"></td>
-          <td id="date"> </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td id="title"> </td>
-          <td id="desc"></td>
-          <td id="date"> </td>
-        </tr>
-		<tr>
-          <th scope="row">4</th>
-          <td id="title"> </td>
-          <td id="desc"></td>
-          <td id="date"> </td>
-        </tr>
+
       	</tbody>
-
-
           </table>
-          <input type="submit" class="btn btn-primary" value="submit" form="regform">
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@
     require_once(LIBRARIES_PATH . "/isloggedin.php");
     require_once(TEMPLATES_PATH . "/banner.php");
     require_once(LIBRARIES_PATH . "/registerfunc.php");
-    require_once(TEMPLATES_PATH . $_SESSION["user"][3]);
+    require_once(TEMPLATES_PATH . $_SESSION["user"][4]);
 ?>
 
 <div class="container">

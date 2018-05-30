@@ -16,7 +16,7 @@
          <li class="list-group-item"><input type="text" name="username" placeholder = "username" required></li>
          <li class="list-group-item"><h4>Password</h4></li>
          <li class="list-group-item"><input type="password" name="password" placeholder = "password" required></li>
-         <li class="list-group-item"><input type="submit" value="submit" form="loginform"></li>
+         <li class="list-group-item"><input class="btn btn-primary btn-lg" type="submit" value="Log In" form="loginform"></li>
          <li class="list-group-item" style="height: 45px"><hr style="border-top: dotted 1px;" /></li>
          <li class="list-group-item" style="text-align: left; border: 0px"><a href=#>Forgot Password</a></li>
          <li class="list-group-item" style="text-align: left; border: 0px"><a href="register.php">Register Here</a></li>
@@ -29,4 +29,15 @@
 
 <?php
     require_once(TEMPLATES_PATH . "/footer.php");
+    // Check for login attempt and throw alert for error
+    // Will change error description to "username or Password" for security
+    // after dev phase
+    if (isset($loginresult)) {
+      if ($loginresult == 1) {
+        echo "<script type='text/javascript'>alert('Incorrect Username');</script>";
+      }
+      elseif ($loginresult == 2) {
+        echo "<script type='text/javascript'>alert('Incorrect Password');</script>";
+      }
+    }
 ?>

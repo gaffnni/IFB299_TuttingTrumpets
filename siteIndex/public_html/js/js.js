@@ -12,6 +12,8 @@ $('input.bday').on('change', function(){
   }
 });
 
+// Validation
+
 function validateForm() {
 
   // First Name

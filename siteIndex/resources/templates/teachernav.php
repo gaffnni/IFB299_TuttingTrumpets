@@ -5,13 +5,13 @@
         <a href="<?php echo PROFILE_PATH . '/profile.php'?>">Profile</a>
       </li>
       <li style="width: 25%;">
-        <a href="<?php echo TEACHER_PATH . '/avlblclasses.php'?>">Available Classes</a>
+        <a href="<?php echo TEACHER_PATH . '/bookedclasses.php'?>">Booked Classes</a>
       </li>
       <li style="width: 25%;">
-        <a href="<?php echo TEACHER_PATH . '/timetable.php'?>">Timetable</a>
+        <a href="<?php //echo TEACHER_PATH . '/timetable.php'?>">Timetable</a>
       </li>
       <li style="width: 25%;">
-        <a href="<?php echo TEACHER_PATH . '/editprofile.php'?>">Edit Profile</a>
+        <a href="<?php //echo TEACHER_PATH . '/editprofile.php'?>">Edit Profile</a>
       </li>
     </ul>
 </nav>

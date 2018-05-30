@@ -11,11 +11,11 @@ function debug_to_console( $data ) {
 }
 
 // Session variables
-//        value[0] = accountId
-//        value[1] = userId
-//        value[2] = accountType
-//        value[3] = password
-//        value[4] = salt
+//        value[0] = accountType
+//        value[1] = accountId
+//        value[2] = userId
+//        value[3] = UsrNavbar
+//        value[4] = Name
 
 //sql login stmt
 
@@ -44,7 +44,7 @@ From accounts a
 left join studentsaccounts sa on a.StudentId = sa.Id
 left join adminaccounts aa on a.AdminId = aa.Id
 left join teachersaccounts ta on a.TeacherId = ta.Id
-Where Username = :username;"
+Where Username = :username;";
 
 //check both fields are filled
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_POST['username']) && !empty($_POST['password'])) {
@@ -55,25 +55,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $form == 'loginform'  && !empty($_PO
   $stmt->bindValue(':username', $username);
   $stmt->execute();
   $rows = $stmt->fetch(PDO::FETCH_NUM);
-
+  debug_to_console($rows);
   // Check user type
   if (!empty($rows[0])) {
     global $pass;
     $userid = $rows[1];
     $acctid = $rows[0];
     $password = $pass . $rows[4];
+    debug_to_console(hash('sha256', $password));
     // Check Password
     if (hash('sha256', $password) == $rows[3]) {
       // Login Successful  -> Go to account page
       // Set Session Data
-      $_SESSION["user"] = array($row[2], $acctid, $rows[0]);
-      header('Location: private_html/profile.php');
+      $_SESSION["user"] = array($rows[2], $acctid, $rows[1]);
+
+      // Get name and store in session values
+      $usrtype = $_SESSION["user"][0];
+      $userid = $_SESSION["user"][2];
+      $stable = "studentsaccounts";
+      $ttable = "teachersaccounts";
+      $atable = "adminaccounts";
+      $usertypetable = "";
+      function get_userdata(){
+        global $stmt, $pdo, $getnamesql, $userid, $usertypetable;
+        $getnamesql = "SELECT FirstName FROM ". $usertypetable ." WHERE Id=:id";
+        $stmt = $pdo->prepare($getnamesql);
+        $stmt->bindValue(':id', $userid);
+        $stmt->execute();
+        $rows = $stmt->fetch(PDO::FETCH_NUM);
+        array_push($_SESSION["user"], $rows[0]);
+        header('Location: private_html/profile.php');
+      }
+      if ($usrtype == 'Student') {
+        $usertypetable = $stable;
+        get_userdata();
+      } elseif ($usrtype == 'Teacher') {
+        $usertypetable = $ttable;
+        get_userdata();
+      } elseif ($usrtype == 'Admin') {
+        $usertypetable = $atable;
+        get_userdata();
+      }
+
+
     } else {
-      echo "Incorect Password";
-    }  
+      $loginresult = 2;
+    }
   } else {
-    echo "Incorect Username";
-    $loginresult = false;
-    // TO DO -Failed login popup --------------
+    $loginresult = 1;
   }
 }

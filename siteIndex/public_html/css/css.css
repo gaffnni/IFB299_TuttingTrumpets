@@ -107,7 +107,7 @@ img {
 .table > tbody > tr > td{
   width: 60%;
   background-color: #f0e8d8;
-  border-top: 10px solid #f8fff5;
+  border-top: 10px solid #eff9f4;
 }
 
 iframe{
@@ -126,7 +126,7 @@ iframe{
 	padding: 10px 15px;
 	margin-bottom: -1px;
   margin-top: -10px;
-	background-color: #f8fff5;
+	background-color: #eff9f4;
 	border: 0px solid #ddd;
 	width: 100%;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
@@ -134,7 +134,7 @@ iframe{
 }
 
 .panel {
-  background-color: #f8fff5;
+  background-color: #eff9f4;
 }
 
 #cellleft {
@@ -173,4 +173,23 @@ table {
 
 #tempprorf {
   height: 680px;
+}
+
+.panel-success>.panel-heading {
+    color: #424242;
+    background-color: #cde1cc;
+    border-color: #424242;
+}
+.panel {
+    background-color: #eff9f4;
+}
+.btn-primary {
+    color: #424242;
+    background-color: #cde1cc;
+    border-color: #424242;
+}
+
+table.a {
+    table-layout: fixed !important;
+    width: 100% !important;
 }
