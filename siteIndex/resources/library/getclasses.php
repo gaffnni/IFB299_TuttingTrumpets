@@ -57,6 +57,8 @@ if ($_SESSION["user"][0] == 'Teacher') {
       // -------------------------------------------------------------
       // This table contains the list of classes a teacher has Created
       // Each row contains details about the class.
+      // All is needed to get the Pending and Approved column returned in classesstudents
+
       // The Pending column contains the number of students who have have applied but not yet been approved.
       // echo '<td id="pending">'.$row['Pending'].'</td>';
       //
